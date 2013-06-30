@@ -3,8 +3,8 @@ JavaScript-OOP
 
 Lib for simpler Object Oriented JavaScript
 
-...js
+``` js
 var Foo = Classy(function(){
     
 });
-...
+```
