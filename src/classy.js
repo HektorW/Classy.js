@@ -8,6 +8,13 @@
  */
 
 
+/** TO INCLUDE
+ * Class {
+ *     instanceof
+ * }
+ */
+
+
 !function(context, definition){
     if(typeof define === 'function') define(definition);                    // RequireJS
     else if(typeof module !== 'undefined') module.exports = definition();   // Node-module
