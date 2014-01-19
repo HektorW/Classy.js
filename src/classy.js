@@ -34,6 +34,8 @@
   //
   // Resulting regex checks whether the function contains a reference to 
   // supr() or not
+
+
   var fnTest = /xyz/.test(function(){xyz;}) ?
               /\bsupr\b/ : /.*/;
   var initializing = false;
@@ -123,10 +125,12 @@
     return F;
   };
 
-  if(typeof module !== 'undefined' && module.exports)
+  if(typeof define !== 'undefined' && define.amd)
+    define([], function() { return Classy; });
+  else if(typeof module !== 'undefined' && module.exports)
     module.exports = Classy;
   else
-    this.Classy = Classy;
+    window.Classy = Classy;
 
 
 })();
