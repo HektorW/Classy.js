@@ -50,6 +50,10 @@
   }
 
   Classy.extend = function(obj){
+    // if a function is supplied we executed and it must return an object
+    if(isFn(obj))
+      obj = obj();
+
     var supr = this.prototype;
     initializing = true;
     var new_prototype = new this();
