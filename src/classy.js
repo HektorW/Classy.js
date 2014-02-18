@@ -4,28 +4,9 @@
  * https://github.com/hektorw/classy.js
  * @author Hektor
  *
- * 2876
  */
 
-
-// function getBrowser(){
-//   var agents = {
-//     'Chrome': 'Google Chrome',
-//     'Safari': 'Apple Safari',
-//     'Opera': 'Opera',
-//     'Firefox': 'Mozilla Firefox',
-//     'MSIE': 'Microsoft Internet Explorer'
-//   };
-
-//   var ua = window.navigator.userAgent;
-//   for(var a in agents){
-//     if(ua.indexOf(ua) > -1)
-//       return agents[a];
-//   }
-// }
-
-
-(function(){
+;(function(){
   // First decides whether functions get parsed to string correctly
   //    /xyz/.test(function(){xyz;}) 
   //    
@@ -34,11 +15,10 @@
   //
   // Resulting regex checks whether the function contains a reference to 
   // supr() or not
+  var fnTest = /xyz/.test(function(){'xyz';}) ? /\bsupr\b/ : /.*/;
 
-
-  var fnTest = /xyz/.test(function(){xyz;}) ?
-              /\bsupr\b/ : /.*/;
   var initializing = false;
+  var _global = this;
 
   // Exposed method outside
   function Classy(obj){
@@ -70,10 +50,9 @@
           var fn = function(){
             var tmp = this.supr;
 
-            // this.supr = supr[prop];
             this.supr = supr[name];
 
-            // var ret = p.apply(this, arguments);
+            // if getting undefined error here, super function doesn't exist
             var ret = f.apply(this, arguments);
 
             this.supr = tmp;
@@ -130,7 +109,7 @@
   else if(typeof module !== 'undefined' && module.exports)
     module.exports = Classy;
   else
-    window.Classy = Classy;
+    _global.Classy = Classy;
 
 
 })();
